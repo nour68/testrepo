@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    font-family: 'Barlow', sans-serif;
+    background-color: #0A0A0A;
+    color: #F5F2ED;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* iOS safe area support */
+  .safe-area-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep scroll */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Smooth momentum scrolling on iOS */
+  .scroll-smooth-ios {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Page transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+main, .page-enter {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Input autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #F5F2ED;
+  -webkit-box-shadow: 0 0 0px 1000px #1C1C1C inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Time input styling */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.4;
+}
